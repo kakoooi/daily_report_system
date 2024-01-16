@@ -12,7 +12,7 @@ public interface JpaConst {
     //データ取得件数の最大値
     int ROW_PER_PAGE = 15;
 
-  //従業員テーブル
+    //従業員テーブル
     String TABLE_EMP = "employees"; //テーブル名
     //従業員テーブルカラム
     String EMP_COL_ID = "id"; //id
