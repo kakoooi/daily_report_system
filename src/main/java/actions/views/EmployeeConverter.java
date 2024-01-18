@@ -14,7 +14,7 @@ import models.Employee;
 public class EmployeeConverter {
 
     /**
-     * ViewモデルのインスタンスからDTOモデルのインスタンスを生成する
+     * ViewモデルのインスタンスからDTOモデルのインスタンスを作成する
      * @param ev EmployeeViewのインスタンス
      * @return Employeeのインスタンス
      */
@@ -31,11 +31,12 @@ public class EmployeeConverter {
                                 ? JpaConst.ROLE_ADMIN
                                 : JpaConst.ROLE_GENERAL,
                 ev.getCreatedAt(),
+                ev.getUpdatedAt(),
                 ev.getDeleteFlag() == null
                         ? null
-                        :ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
-                               ? JpaConst.EMP_DEL_TRUE
-                               : JpaConst.EMP_DEL_FALSE);
+                        : ev.getDeleteFlag() == AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
+                                ? JpaConst.EMP_DEL_TRUE
+                                : JpaConst.EMP_DEL_FALSE);
     }
 
     /**
@@ -63,9 +64,9 @@ public class EmployeeConverter {
                 e.getUpdatedAt(),
                 e.getDeleteFlag() == null
                         ? null
-                        :e.getDeleteFlag() == JpaConst.EMP_DEL_TRUE
-                               ? AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
-                               : AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
+                        : e.getDeleteFlag() == JpaConst.EMP_DEL_TRUE
+                                ? AttributeConst.DEL_FLAG_TRUE.getIntegerValue()
+                                : AttributeConst.DEL_FLAG_FALSE.getIntegerValue());
     }
 
     /**
