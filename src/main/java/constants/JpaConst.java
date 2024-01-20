@@ -2,7 +2,7 @@ package constants;
 
 /**
  * DB関連の項目値を定義するインターフェース
- * ※インターフェースに定義した変数は public static final 修飾子がついているとみなされる
+ * ※インターフェイスに定義した変数は public static final 修飾子がついているとみなされる
  */
 public interface JpaConst {
 
@@ -10,7 +10,7 @@ public interface JpaConst {
     String PERSISTENCE_UNIT_NAME = "daily_report_system";
 
     //データ取得件数の最大値
-    int ROW_PER_PAGE = 15;
+    int ROW_PER_PAGE = 15; //1ページに表示するレコードの数
 
     //従業員テーブル
     String TABLE_EMP = "employees"; //テーブル名
@@ -76,20 +76,3 @@ public interface JpaConst {
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

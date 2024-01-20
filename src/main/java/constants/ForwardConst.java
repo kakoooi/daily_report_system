@@ -6,14 +6,14 @@ package constants;
  */
 public enum ForwardConst {
 
-    // action
+    //action
     ACT("action"),
     ACT_TOP("Top"),
     ACT_EMP("Employee"),
     ACT_REP("Report"),
     ACT_AUTH("Auth"),
 
-    // command
+    //command
     CMD("command"),
     CMD_NONE(""),
     CMD_INDEX("index"),
@@ -58,20 +58,5 @@ public enum ForwardConst {
     public String getValue() {
         return this.text;
     }
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
