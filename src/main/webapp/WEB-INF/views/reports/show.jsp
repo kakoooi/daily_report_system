@@ -39,7 +39,13 @@
                 </tr>
             </tbody>
         </table>
-
+        <br /><br />
+        <form action="./FavoriteAction" method="POST">
+            <input type="hidden" name="employee_id" value="${employee.id}" />
+            <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
+           <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+            <button type="submit">いいね</button>
+        </form>
         <c:if test="${sessionScope.login_employee.id == report.employee.id}">
             <p>
                 <a href="<c:url value='?action=${actRep}&command=${commEdt}&id=${report.id}' />">この日報を編集する</a>

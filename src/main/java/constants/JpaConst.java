@@ -40,6 +40,15 @@ public interface JpaConst {
     String REP_COL_CREATED_AT = "created_at"; //登録日時
     String REP_COL_UPDATED_AT = "updated_at"; //更新日時
 
+    //いいねテーブル
+    String TABLE_FAV = "favorite"; //テーブル名
+    //いいねテーブルカラム
+    String FAV_COL_ID = "id"; //id
+    String FAV_COL_EMP = "employee_id"; //日報を作成した従業員のid
+    String FAV_COL_REP = "report_id"; //レポートのid
+    String FAV_COL_CREATED_AT = "cretaed_at"; //登録日時
+    String FAV_COL_UPDATED_AT = "updated_at"; //更新日時
+
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
