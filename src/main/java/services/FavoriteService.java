@@ -3,6 +3,7 @@ package services;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import actions.views.FavoriteConverter;
 import actions.views.FavoriteView;
 import actions.views.ReportConverter;
 import actions.views.ReportView;
@@ -51,11 +52,25 @@ public class FavoriteService extends ServiceBase{
     private void createInternal(FavoriteView fv) {
 
         em.getTransaction().begin();
-
-        em.persist(fv);
+        em.persist(FavoriteConverter.toModel(fv));
         em.getTransaction().commit();
 
 
+    }
+
+    /**
+     * idを条件にいいねデータを削除する
+     * @param id
+     */
+    public void destroy(Integer id) {
+
+        //idを条件に登録済みの従業員情報を取得する
+        FavoriteView savedFav = findOne(id);
+
+        em.getTransaction().begin();
+        em.remove(savedFav);
+        em.getTransaction().commit();
+        em.close();
     }
 
 }

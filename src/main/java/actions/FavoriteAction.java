@@ -8,6 +8,7 @@ import actions.views.EmployeeView;
 import actions.views.FavoriteView;
 import actions.views.ReportView;
 import constants.AttributeConst;
+import constants.ForwardConst;
 import services.FavoriteService;
 
 /**
@@ -47,6 +48,7 @@ public class FavoriteAction extends ActionBase {
             //idを条件に日報データを取得
             ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
+
             //パラメータの値を元にいいね情報のインスタンスを作成する
             FavoriteView fv = new FavoriteView(
                     null,
@@ -57,6 +59,27 @@ public class FavoriteAction extends ActionBase {
 
             //いいね情報登録
             service.create(fv);
+
+            //一覧画面へリダイレクト
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
+        }
+    }
+
+    /**
+     * いいねの取り消しを行う
+     * @throws ServletException
+     * @throws IOException
+     */
+    public void destroy() throws ServletException, IOException {
+
+        //CSRF対策 tokenのチェック
+        if (checkToken()) {
+
+            //idを条件にいいねデータを削除する
+            service.destroy(toNumber(getRequestParam(AttributeConst.FAV_ID)));
+
+            //一覧画面にリダイレクト
+            redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
         }
     }
 

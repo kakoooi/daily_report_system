@@ -2,10 +2,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ page import="constants.ForwardConst" %>
+<%@ page import="constants.AttributeConst" %>
 
 <c:set var="actRep" value="${ForwardConst.ACT_REP.getValue()}" />
+<c:set var="actFav" value="${ForwardConst.ACT_FAV.getValue()}" />
+
 <c:set var="commIdx" value="${ForwardConst.CMD_INDEX.getValue()}" />
 <c:set var="commEdt" value="${ForwardConst.CMD_EDIT.getValue()}" />
+<c:set var="commCrt" value="${ForwardConst.CMD_CREATE.getValue()}" />
 
 <c:import url="/WEB-INF/views/layout/app.jsp">
     <c:param name="content">
@@ -40,11 +44,11 @@
             </tbody>
         </table>
         <br /><br />
-        <form action="./FavoriteAction" method="POST">
-            <input type="hidden" name="employee_id" value="${employee.id}" />
+        <form method="POST" action="<c:url value='?action=${actFav}&command=${commCrt}' />">
+            <input type="hidden" name="login_employee_id" value="${sessionScope.login_employee.id}" />
             <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
-           <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
-            <button type="submit">いいね</button>
+            <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
+            <button type="submit">いいね!</button>
         </form>
         <c:if test="${sessionScope.login_employee.id == report.employee.id}">
             <p>
