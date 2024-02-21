@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import constants.JpaConst;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -20,7 +21,8 @@ import lombok.Setter;
  * いいね機能のDTOモデル
  *
  */
-@Table(name = "favorite")
+
+@Table(name = JpaConst.TABLE_FAV)
 
 @Getter
 @Setter

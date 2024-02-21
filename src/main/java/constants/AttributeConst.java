@@ -51,7 +51,9 @@ public enum AttributeConst {
     REP_CONTENT("content_msg"),
 
     // いいね管理
-    FAV_ID("id");
+    FAV_ID("id"),
+    FAV_COUNT("favorites_count"),
+    MY_FAV_COUNT("my_favorite_count");
 
     private final String text;
     private final Integer i;

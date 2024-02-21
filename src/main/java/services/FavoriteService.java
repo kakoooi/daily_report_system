@@ -7,6 +7,7 @@ import actions.views.FavoriteConverter;
 import actions.views.FavoriteView;
 import actions.views.ReportConverter;
 import actions.views.ReportView;
+import models.Favorite;
 import models.Report;
 
 /**
@@ -64,11 +65,12 @@ public class FavoriteService extends ServiceBase{
      */
     public void destroy(Integer id) {
 
-        //idを条件に登録済みの従業員情報を取得する
-        FavoriteView savedFav = findOne(id);
+        //セッションスコープからいいねのidを取得して
+        //該当のIDのいいね1件のみをデータベースから取得
+        Favorite f = em.find(Favorite.class, id);
 
         em.getTransaction().begin();
-        em.remove(savedFav);
+        em.remove(f);
         em.getTransaction().commit();
         em.close();
     }

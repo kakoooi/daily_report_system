@@ -151,6 +151,11 @@ public class ReportAction extends ActionBase {
         //idを条件に日報データを取得する
         ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
+        //セッションからログイン中の従業員情報を取得
+        EmployeeView loginEmployee = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+
+        long myFavoriteCount = service.countEmpAndRep(loginEmployee, rv);
+
         if (rv == null) {
             //該当の日報データが存在しない場合はエラー画面を表示
             forward(ForwardConst.FW_ERR_UNKNOWN);
@@ -158,6 +163,7 @@ public class ReportAction extends ActionBase {
         } else {
 
             putRequestScope(AttributeConst.REPORT, rv); //取得した日報データ
+            putRequestScope(AttributeConst.MY_FAV_COUNT, myFavoriteCount); //取得したいいねデータ
             putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
 
             //詳細画面を表示

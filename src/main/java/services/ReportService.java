@@ -154,4 +154,20 @@ public class ReportService extends ServiceBase {
 
     }
 
+    /**
+     *
+     * @param loginEmployee
+     * @param rv
+     * @return
+     */
+    public long countEmpAndRep(EmployeeView loginEmployee, ReportView rv) {
+
+        long count = (long) em.createNamedQuery(JpaConst.Q_FAV_COUNT_EMP_AND_REP, Long.class)
+                .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(loginEmployee))
+                .setParameter(JpaConst.JPQL_PARM_REPORT, ReportConverter.toModel(rv))
+                .getSingleResult();
+
+        return count;
+    }
+
 }
