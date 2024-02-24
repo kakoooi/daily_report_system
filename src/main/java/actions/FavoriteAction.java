@@ -75,8 +75,17 @@ public class FavoriteAction extends ActionBase {
         //CSRF対策 tokenのチェック
         if (checkToken()) {
 
-            //idを条件にいいねデータを削除する
-            service.destroy(toNumber(getRequestParam(AttributeConst.FAV_ID)));
+            //セッションからログイン中の従業員情報を取得
+            EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+
+            //idを条件に日報データを取得
+            ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
+
+            //従業員IDと日報IDをもとにいいねデータを取得
+            FavoriteView fv = service.findOne(ev, rv);
+
+            //いいねデータを削除する
+            service.destroy(fv);
 
             //一覧画面にリダイレクト
             redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);

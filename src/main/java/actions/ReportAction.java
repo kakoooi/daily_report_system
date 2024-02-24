@@ -152,9 +152,9 @@ public class ReportAction extends ActionBase {
         ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
         //セッションからログイン中の従業員情報を取得
-        EmployeeView loginEmployee = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
+        EmployeeView ev = (EmployeeView) getSessionScope(AttributeConst.LOGIN_EMP);
 
-        long myFavoriteCount = service.countEmpAndRep(loginEmployee, rv);
+        long myFavoriteCount = service.countEmpAndRep(ev, rv);
 
         if (rv == null) {
             //該当の日報データが存在しない場合はエラー画面を表示

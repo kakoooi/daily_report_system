@@ -87,6 +87,9 @@ public interface JpaConst {
     String Q_REP_COUNT_ALL_MINE_DEF = "SELECT COUNT(r) FROM Report AS r WHERE r.employee = :" + JPQL_PARM_EMPLOYEE;
     //指定した従業員がある日報に対していいねを押した件数を取得する
     String Q_FAV_COUNT_EMP_AND_REP = ENTITY_FAV + ".countEmpAndRep";
-    String Q_FAV_COUNT_EMP_AND_REP_DEF = "SELECT COUNT(f) FROM Favorite AS f WHERE f.employee = :" + JPQL_PARM_EMPLOYEE + "AND f.report = :" + JPQL_PARM_REPORT;
+    String Q_FAV_COUNT_EMP_AND_REP_DEF = "SELECT COUNT(f) FROM Favorite AS f WHERE f.employee = :" + JPQL_PARM_EMPLOYEE + " AND f.report = :" + JPQL_PARM_REPORT;
+    //指定した従業員がある日報に対して押したいいねを取得する
+    String Q_FAV_GET_BY_EMP_AND_REP = ENTITY_FAV + "getByEmpAndRep";
+    String Q_FAV_GET_BY_EMP_AND_REP_DEF = "SELECT f FROM Favorite AS f WHERE f.employee = :" + JPQL_PARM_EMPLOYEE + " AND f.report = :" + JPQL_PARM_REPORT;
 
 }

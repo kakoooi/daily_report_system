@@ -3,10 +3,13 @@ package services;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import actions.views.EmployeeConverter;
+import actions.views.EmployeeView;
 import actions.views.FavoriteConverter;
 import actions.views.FavoriteView;
 import actions.views.ReportConverter;
 import actions.views.ReportView;
+import constants.JpaConst;
 import models.Favorite;
 import models.Report;
 
@@ -24,6 +27,21 @@ public class FavoriteService extends ServiceBase{
     public ReportView findOne(int id) {
         return ReportConverter.toView(findOneInternal(id));
     }
+
+    /**
+     * Employee_idとReport_idを条件に取得したデータをfavoriteViewのインスタンスで返却する
+     *
+     */
+    public FavoriteView findOne(EmployeeView ev, ReportView rv) {
+
+        Favorite f = em.createNamedQuery(JpaConst.Q_FAV_GET_BY_EMP_AND_REP, Favorite.class)
+                .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(ev))
+                .setParameter(JpaConst.JPQL_PARM_REPORT, ReportConverter.toModel(rv))
+                .getSingleResult();
+
+        return FavoriteConverter.toView(f);
+    }
+
 
     /**
      * 画面で「いいね」を押したらデータを1件作成し、「いいね」テーブルに登録する
@@ -63,14 +81,10 @@ public class FavoriteService extends ServiceBase{
      * idを条件にいいねデータを削除する
      * @param id
      */
-    public void destroy(Integer id) {
-
-        //セッションスコープからいいねのidを取得して
-        //該当のIDのいいね1件のみをデータベースから取得
-        Favorite f = em.find(Favorite.class, id);
+    public void destroy(FavoriteView fv) {
 
         em.getTransaction().begin();
-        em.remove(f);
+        em.remove(FavoriteConverter.toModel(fv));
         em.getTransaction().commit();
         em.close();
     }

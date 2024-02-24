@@ -48,6 +48,8 @@
         <c:choose>
             <c:when test="${my_favorite_count != 0 }">
                 <form method="POST" action="<c:url value='?action=${actFav}&command=${commDtr}' />">
+                    <input type="hidden" name="login_employee_id" value="${sessionScope.login_employee.id}" />
+                    <input type="hidden" name="${AttributeConst.REP_ID.getValue()}" value="${report.id}" />
                     <input type="hidden" name="${AttributeConst.TOKEN.getValue()}" value="${_token}" />
                     <button type="submit">いいね!を取り消す</button>
                 </form>

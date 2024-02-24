@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 import constants.JpaConst;
@@ -23,6 +24,8 @@ import lombok.Setter;
  */
 
 @Table(name = JpaConst.TABLE_FAV)
+@NamedQuery(name = JpaConst.Q_FAV_GET_BY_EMP_AND_REP,
+            query = JpaConst.Q_FAV_GET_BY_EMP_AND_REP_DEF)
 
 @Getter
 @Setter
