@@ -41,7 +41,7 @@ public interface JpaConst {
     String REP_COL_UPDATED_AT = "updated_at"; //更新日時
 
     //いいねテーブル
-    String TABLE_FAV = "Favorite"; //テーブル名
+    String TABLE_FAV = "favorite"; //テーブル名
     //いいねテーブルカラム
     String FAV_COL_ID = "id"; //id
     String FAV_COL_EMP = "employee_id"; //日報を作成した従業員のid
@@ -52,7 +52,7 @@ public interface JpaConst {
     //Entity名
     String ENTITY_EMP = "employee"; //従業員
     String ENTITY_REP = "report"; //日報
-    String ENTITY_FAV = "Favorite"; //いいね
+    String ENTITY_FAV = "favorite"; //いいね
 
     //JPQL内パラメータ
     String JPQL_PARM_CODE = "code"; //社員番号
@@ -89,7 +89,10 @@ public interface JpaConst {
     String Q_FAV_COUNT_EMP_AND_REP = ENTITY_FAV + ".countEmpAndRep";
     String Q_FAV_COUNT_EMP_AND_REP_DEF = "SELECT COUNT(f) FROM Favorite AS f WHERE f.employee = :" + JPQL_PARM_EMPLOYEE + " AND f.report = :" + JPQL_PARM_REPORT;
     //指定した従業員がある日報に対して押したいいねを取得する
-    String Q_FAV_GET_BY_EMP_AND_REP = ENTITY_FAV + "getByEmpAndRep";
+    String Q_FAV_GET_BY_EMP_AND_REP = ENTITY_FAV + ".getByEmpAndRep";
     String Q_FAV_GET_BY_EMP_AND_REP_DEF = "SELECT f FROM Favorite AS f WHERE f.employee = :" + JPQL_PARM_EMPLOYEE + " AND f.report = :" + JPQL_PARM_REPORT;
+    //ある日報のいいね件数を取得する
+    String Q_FAV_COUNT = ENTITY_FAV + ".count";
+    String Q_FAV_COUNT_DEF = "SELECT f FROM Favorite AS f WHERE f.report = :" + JPQL_PARM_REPORT;
 
 }

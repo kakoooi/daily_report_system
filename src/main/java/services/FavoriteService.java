@@ -86,7 +86,7 @@ public class FavoriteService extends ServiceBase{
         em.getTransaction().begin();
         em.remove(FavoriteConverter.toModel(fv));
         em.getTransaction().commit();
-        em.close();
+
     }
 
 }
