@@ -32,14 +32,14 @@ public class FavoriteService extends ServiceBase{
      * Employee_idとReport_idを条件に取得したデータをfavoriteViewのインスタンスで返却する
      *
      */
-    public FavoriteView findOne(EmployeeView ev, ReportView rv) {
+    public Favorite findOne(EmployeeView ev, ReportView rv) {
 
         Favorite f = em.createNamedQuery(JpaConst.Q_FAV_GET_BY_EMP_AND_REP, Favorite.class)
                 .setParameter(JpaConst.JPQL_PARM_EMPLOYEE, EmployeeConverter.toModel(ev))
                 .setParameter(JpaConst.JPQL_PARM_REPORT, ReportConverter.toModel(rv))
                 .getSingleResult();
 
-        return FavoriteConverter.toView(f);
+        return f;
     }
 
 
@@ -81,10 +81,10 @@ public class FavoriteService extends ServiceBase{
      * idを条件にいいねデータを削除する
      * @param id
      */
-    public void destroy(FavoriteView fv) {
+    public void destroy(Favorite f) {
 
         em.getTransaction().begin();
-        em.remove(FavoriteConverter.toModel(fv));
+        em.remove(f);
         em.getTransaction().commit();
 
     }

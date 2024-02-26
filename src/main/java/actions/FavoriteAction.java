@@ -9,6 +9,7 @@ import actions.views.FavoriteView;
 import actions.views.ReportView;
 import constants.AttributeConst;
 import constants.ForwardConst;
+import models.Favorite;
 import services.FavoriteService;
 
 /**
@@ -82,10 +83,10 @@ public class FavoriteAction extends ActionBase {
             ReportView rv = service.findOne(toNumber(getRequestParam(AttributeConst.REP_ID)));
 
             //従業員IDと日報IDをもとにいいねデータを取得
-            FavoriteView fv = service.findOne(ev, rv);
+            Favorite f = service.findOne(ev, rv);
 
             //いいねデータを削除する
-            service.destroy(fv);
+            service.destroy(f);
 
             //一覧画面にリダイレクト
             redirect(ForwardConst.ACT_REP, ForwardConst.CMD_INDEX);
