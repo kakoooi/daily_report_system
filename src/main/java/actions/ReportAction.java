@@ -156,6 +156,8 @@ public class ReportAction extends ActionBase {
 
         long myFavoriteCount = service.countEmpAndRep(ev, rv);
 
+        long favoriteCount = service.countFav(rv);
+
         if (rv == null) {
             //該当の日報データが存在しない場合はエラー画面を表示
             forward(ForwardConst.FW_ERR_UNKNOWN);
@@ -164,6 +166,7 @@ public class ReportAction extends ActionBase {
 
             putRequestScope(AttributeConst.REPORT, rv); //取得した日報データ
             putRequestScope(AttributeConst.MY_FAV_COUNT, myFavoriteCount); //取得したいいねデータ
+            putRequestScope(AttributeConst.FAV_COUNT, favoriteCount); //取得したいいねの数
             putRequestScope(AttributeConst.TOKEN, getTokenId()); //CSRF対策用トークン
 
             //詳細画面を表示

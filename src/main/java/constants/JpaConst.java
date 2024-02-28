@@ -93,6 +93,6 @@ public interface JpaConst {
     String Q_FAV_GET_BY_EMP_AND_REP_DEF = "SELECT f FROM Favorite AS f WHERE f.employee = :" + JPQL_PARM_EMPLOYEE + " AND f.report = :" + JPQL_PARM_REPORT;
     //ある日報のいいね件数を取得する
     String Q_FAV_COUNT = ENTITY_FAV + ".count";
-    String Q_FAV_COUNT_DEF = "SELECT f FROM Favorite AS f WHERE f.report = :" + JPQL_PARM_REPORT;
+    String Q_FAV_COUNT_DEF = "SELECT COUNT(f) FROM Favorite AS f WHERE f.report = :" + JPQL_PARM_REPORT;
 
 }

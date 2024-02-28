@@ -52,7 +52,7 @@ public enum AttributeConst {
 
     // いいね管理
     FAV_ID("id"),
-    FAV_COUNT("favorites_count"),
+    FAV_COUNT("favorite_count"),
     MY_FAV_COUNT("my_favorite_count");
 
     private final String text;

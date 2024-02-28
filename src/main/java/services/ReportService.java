@@ -155,7 +155,7 @@ public class ReportService extends ServiceBase {
     }
 
     /**
-     *
+     * あるレポートに対していいねを押しているかどうかの結果を取得する
      * @param loginEmployee
      * @param rv
      * @return
@@ -168,6 +168,18 @@ public class ReportService extends ServiceBase {
                 .getSingleResult();
 
         return count;
+    }
+
+    /**
+     * いいねの件数を取得する
+     */
+    public long countFav(ReportView rv) {
+
+        long favCount = (long) em.createNamedQuery(JpaConst.Q_FAV_COUNT, Long.class)
+                .setParameter(JpaConst.JPQL_PARM_REPORT, ReportConverter.toModel(rv))
+                .getSingleResult();
+
+        return favCount;
     }
 
 }

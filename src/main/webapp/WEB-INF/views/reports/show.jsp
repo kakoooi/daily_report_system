@@ -63,6 +63,7 @@
                 </form>
             </c:otherwise>
         </c:choose>
+        <p>いいね：${favorite_count}件</p>
 
         <c:if test="${sessionScope.login_employee.id == report.employee.id}">
             <p>
